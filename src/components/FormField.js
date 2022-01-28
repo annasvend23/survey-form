@@ -2,10 +2,6 @@ import React from 'react';
 import './FormField.css';
 
 class FormField extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   renderTextarea() {
     return (
       <>

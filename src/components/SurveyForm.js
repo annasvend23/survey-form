@@ -132,12 +132,6 @@ class SurveyForm extends React.Component {
     })
   }
 
-  // componentDidUpdate() {
-  //   if (Object.keys(this.state.errors).length === 0 && this.state.isSubmit) {
-  //     console.log(this.state.fields);
-  //   }
-  // }
-
   render() {
     return (
       <>
