@@ -1,0 +1,13 @@
+.button {
+  font-size: 12px;
+  width: 48%;
+  height: 35px;
+  border: none;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.button_submit {
+  background-color: #4285f4;
+  color: white;
+}

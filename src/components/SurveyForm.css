@@ -1,0 +1,16 @@
+.form {
+  box-sizing: border-box;
+  padding: 30px;
+  width: 90%;
+  max-width: 460px;
+  margin: 40px auto;
+  background-color: #fff;
+}
+
+.buttons-container {
+  box-sizing: border-box;
+  margin-top: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
