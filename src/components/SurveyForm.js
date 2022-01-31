@@ -25,10 +25,8 @@ class SurveyForm extends React.Component {
         about: 0,
         technologyStack: 0,
         lastProject: 0,
-      }
+      },
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (e) => {
@@ -36,7 +34,7 @@ class SurveyForm extends React.Component {
       fields: {
         ...prevState.fields,
         [e.target.name]: e.target.value.trim(),
-      }
+      },
     }));
   };
 
@@ -53,9 +51,9 @@ class SurveyForm extends React.Component {
       count: {
         ...prevState.count,
         [e.target.name]: e.target.value.length,
-      }
+      },
     }));
-  }
+  };
 
   validate = (values) => {
     const errors = {};
@@ -97,14 +95,14 @@ class SurveyForm extends React.Component {
 
     if (!values.technologyStack) {
       errors.technologyStack = 'Поле пустое. Заполните пожалуйста';
-    } else if (values.about.length >= limit) {
-      errors.about = 'Превышен лимит символов в поле';
+    } else if (values.technologyStack.length >= limit) {
+      errors.technologyStack = 'Превышен лимит символов в поле';
     }
 
     if (!values.lastProject) {
       errors.lastProject = 'Поле пустое. Заполните пожалуйста';
-    } else if (values.about.length >= limit) {
-      errors.about = 'Превышен лимит символов в поле';
+    } else if (values.lastProject.length >= limit) {
+      errors.lastProject = 'Превышен лимит символов в поле';
     }
 
     return errors;
@@ -128,98 +126,120 @@ class SurveyForm extends React.Component {
         about: 0,
         technologyStack: 0,
         lastProject: 0,
-      }
-    })
-  }
+      },
+    });
+  };
 
   render() {
+    const isSubmitWithoutErrors =
+      Object.keys(this.state.errors).length === 0 && this.state.isSubmit;
+
     return (
       <>
-        {Object.keys(this.state.errors).length === 0 && this.state.isSubmit ? 
-        <FilledForm state={this.state}/> :
-        <form className='form' onSubmit={this.handleSubmit}>
-          <Header text='Создание анкеты' />
-          <FormField
-            isMultiline={false}
-            type='text'
-            value={this.state.fields.name}
-            name='name'
-            onChange={this.handleChange}
-            label='Имя'
-            error={this.state.errors.name}
-          />
-          <FormField
-            isMultiline={false}
-            type='text'
-            value={this.state.fields.surname}
-            name='surname'
-            onChange={this.handleChange}
-            label='Фамилия'
-            error={this.state.errors.surname}
-          />
-          <FormField
-            isMultiline={false}
-            type='date'
-            value={this.state.fields.dateOfBirth}
-            name='dateOfBirth'
-            onChange={this.handleChange}
-            label='Дата рождения'
-            error={this.state.errors.dateOfBirth}
-          />
-          <FormField
-            isMultiline={false}
-            type='tel'
-            value={this.state.fields.phone}
-            name='phone'
-            onChange={this.handleChange}
-            label='Телефон формата 7-7777-77-77'
-            error={this.state.errors.phone}
-          />
-          <FormField
-            isMultiline={false}
-            type='text'
-            value={this.state.fields.site}
-            name='site'
-            onChange={this.handleChange}
-            label='Сайт'
-            error={this.state.errors.site}
-          />
-          <FormField
-            isMultiline={true}
-            value={this.state.fields.about}
-            name='about'
-            onChange={e => {this.handleChange(e); this.counter(e)}}
-            label='О себе'
-            error={this.state.errors.about}
-            count={this.state.count.about}
-            limit={600}
-          />
-          <FormField
-            isMultiline={true}
-            value={this.state.fields.technologyStack}
-            name='technologyStack'
-            onChange={e => {this.handleChange(e); this.counter(e)}}
-            label='Стек технологий'
-            error={this.state.errors.technologyStack}
-            count={this.state.count.technologyStack}
-            limit={600}
-          />
-          <FormField
-            isMultiline={true}
-            value={this.state.fields.lastProject}
-            name='lastProject'
-            onChange={e => {this.handleChange(e); this.counter(e)}}
-            label='Описание последнего проекта'
-            error={this.state.errors.lastProject}
-            count={this.state.count.lastProject}
-            limit={600}
-          />
-          <div className='buttons-container'>
-            <Button className='button_submit' text='Сохранить' type='submit' />
-            <Button className='button_clear' text='Очистить' type='button' onClick={this.clearForm}/>
-          </div>
-        </form>
-        }
+        {isSubmitWithoutErrors ? (
+          <FilledForm state={this.state} />
+        ) : (
+          <form className='form' onSubmit={this.handleSubmit}>
+            <Header text='Создание анкеты' />
+            <FormField
+              isMultiline={false}
+              type='text'
+              value={this.state.fields.name}
+              name='name'
+              onChange={this.handleChange}
+              label='Имя'
+              error={this.state.errors.name}
+            />
+            <FormField
+              isMultiline={false}
+              type='text'
+              value={this.state.fields.surname}
+              name='surname'
+              onChange={this.handleChange}
+              label='Фамилия'
+              error={this.state.errors.surname}
+            />
+            <FormField
+              isMultiline={false}
+              type='date'
+              value={this.state.fields.dateOfBirth}
+              name='dateOfBirth'
+              onChange={this.handleChange}
+              label='Дата рождения'
+              error={this.state.errors.dateOfBirth}
+            />
+            <FormField
+              isMultiline={false}
+              type='tel'
+              value={this.state.fields.phone}
+              name='phone'
+              onChange={this.handleChange}
+              label='Телефон формата 7-7777-77-77'
+              error={this.state.errors.phone}
+            />
+            <FormField
+              isMultiline={false}
+              type='text'
+              value={this.state.fields.site}
+              name='site'
+              onChange={this.handleChange}
+              label='Сайт'
+              error={this.state.errors.site}
+            />
+            <FormField
+              isMultiline={true}
+              value={this.state.fields.about}
+              name='about'
+              onChange={(e) => {
+                this.handleChange(e);
+                this.counter(e);
+              }}
+              label='О себе'
+              error={this.state.errors.about}
+              count={this.state.count.about}
+              limit={600}
+            />
+            <FormField
+              isMultiline={true}
+              value={this.state.fields.technologyStack}
+              name='technologyStack'
+              onChange={(e) => {
+                this.handleChange(e);
+                this.counter(e);
+              }}
+              label='Стек технологий'
+              error={this.state.errors.technologyStack}
+              count={this.state.count.technologyStack}
+              limit={600}
+            />
+            <FormField
+              isMultiline={true}
+              value={this.state.fields.lastProject}
+              name='lastProject'
+              onChange={(e) => {
+                this.handleChange(e);
+                this.counter(e);
+              }}
+              label='Описание последнего проекта'
+              error={this.state.errors.lastProject}
+              count={this.state.count.lastProject}
+              limit={600}
+            />
+            <div className='buttons-container'>
+              <Button
+                className='button_submit'
+                text='Сохранить'
+                type='submit'
+              />
+              <Button
+                className='button_clear'
+                text='Очистить'
+                type='button'
+                onClick={this.clearForm}
+              />
+            </div>
+          </form>
+        )}
       </>
     );
   }

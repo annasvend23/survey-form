@@ -4,7 +4,11 @@ import './Button.css';
 class Button extends React.Component {
   render() {
     return (
-      <button className={`button ${this.props.className}`} type={this.props.type} onClick={this.props.onClick}>
+      <button
+        className={`button ${this.props.className}`}
+        type={this.props.type}
+        onClick={this.props.onClick}
+      >
         {this.props.text}
       </button>
     );
