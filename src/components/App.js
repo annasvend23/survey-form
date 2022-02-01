@@ -1,12 +1,12 @@
 import SurveyForm from './SurveyForm';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className='App'>
       <SurveyForm />
     </div>
   );
-}
+};
 
 export default App;
